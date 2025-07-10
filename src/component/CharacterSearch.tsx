@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useCharacterSearch } from "../hooks/useCharacterSearch";
 import type { Character, CharacterBasic } from "../types/nexon";
 import CharacterProfile from "./CharacterProfile";
+import Button from "@mui/material/Button";
 
 interface FormValues {
   name: string;
@@ -27,9 +28,10 @@ const CharacterSearch = () => {
           {...register("name")}
           placeholder="캐릭터 닉네임 입력"
         />
-        <button type="submit">
-          qjxms
+        <button type="submit" className="btn">
+          검색
         </button>
+        <Button variant="text">Text</Button>
       </form>
 
       <div className="character_profile">

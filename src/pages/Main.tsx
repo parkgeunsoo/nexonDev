@@ -1,10 +1,10 @@
 import CharacterSearch from "../component/CharacterSearch";
-import "../styles/bootstrap.scss";
+import "../styles/style.scss";
 
 const Main = () => {
   return (
     <div>
-      <div>메인캐릭터 조회</div>
+      <div className="text-center">캐릭터 조회</div>
       <CharacterSearch />
     </div>
   );
