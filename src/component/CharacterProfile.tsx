@@ -15,7 +15,7 @@ const CharacterProfile = ({ profile }: Props) => {
           <p>레벨: {profile.character_level}</p>
         </div>
       ) : (
-        <p>캐릭터를 선택하세요</p>
+        <p></p>
       )}
     </div>
   );

@@ -12,7 +12,7 @@ const CharacterSearch = () => {
   const { register, handleSubmit } = useForm<FormValues>();
   const [name, setName] = useState("");
 
-  const { characters, imgs, loading, error } = useCharacterSearch(name);
+  const { characters, searchInfo, loading, error } = useCharacterSearch(name);
   const [selected, setSelected] = useState<Character | null>(null);
 
   const onSubmit = (data: FormValues) => {
@@ -22,30 +22,42 @@ const CharacterSearch = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("name")} placeholder="캐릭터 닉네임 입력" />
-        <button type="submit">조회</button>
+        <input
+          className="form-control"
+          {...register("name")}
+          placeholder="캐릭터 닉네임 입력"
+        />
+        <button type="submit">
+          qjxms
+        </button>
       </form>
-
-      {loading && <p>로딩 중...</p>}
-      {error && <p>{error}</p>}
 
       <div className="character_profile">
         <CharacterProfile profile={selected} />
       </div>
 
-      <ul className="character-list">
-        {characters.map((char) => (
-          <li key={char.ocid} onClick={() => setSelected(char)}>
-            {imgs && (
-              <img src={imgs.character_image} alt={imgs.character_name} />
-            )}
-            <p>{char.character_name}</p>
-            <p>
-              Lv.<span>{char.character_level}</span>
-            </p>
-          </li>
-        ))}
-      </ul>
+      <div className="character-list">
+        {searchInfo && (
+          <div className="characterInfoWrap">
+            <div className="img">
+              <img
+                src={searchInfo.character_image}
+                alt={searchInfo.character_name}
+              />
+            </div>
+            <div className="characterInfo">
+              <div className="leftInfo">
+                <p className="name">{searchInfo.character_name}</p>
+                <p className="class">{searchInfo.character_class}</p>
+              </div>
+              <div className="rightInfo">
+                <p className="level">{searchInfo.character_level}</p>
+                <p className="desc">Level</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

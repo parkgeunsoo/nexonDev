@@ -13,5 +13,9 @@
 // 4. Utilities
 @import "bootstrap/scss/utilities/api";
 
+// component
+@import "component/form.scss";
+//  초기화
+@import "pages/reset.scss";
 // style
-@import "main.scss";
+@import "pages/main.scss";
