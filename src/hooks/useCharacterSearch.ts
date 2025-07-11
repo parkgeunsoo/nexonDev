@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getOcid, getCharacterList, getCharacterBasic } from "../api/nexon";
+import { getOcid, getCharacterBasic } from "../api/nexon";
 import type { Character, CharacterBasic } from "../types/nexon";
 
 export const useCharacterSearch = (characterName: string) => {
@@ -7,6 +7,7 @@ export const useCharacterSearch = (characterName: string) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchInfo, setSearchInfo] = useState<CharacterBasic>();
+  const [ocid, setOcid] = useState<string | null>(null)
 
   useEffect(() => {
     if (!characterName) {
@@ -17,11 +18,10 @@ export const useCharacterSearch = (characterName: string) => {
       setError(null);
       try {
         const ocid = await getOcid(characterName);
-        // const res = await getCharacterList(ocid);
-        // const list = res.account_list?.[0]?.character_list ?? [];
+        setOcid(ocid); 
         const searchInfo = await getCharacterBasic(ocid);
-        // setCharacters(list);
         setSearchInfo(searchInfo);
+        console.log(ocid + searchInfo);
       } catch (err) {
         console.error(err);
         setError("캐릭터 정보를 불러오는 데 실패했습니다.");
@@ -33,5 +33,5 @@ export const useCharacterSearch = (characterName: string) => {
     fetch();
   }, [characterName]);
 
-  return { characters, searchInfo, loading, error };
+  return { characters, searchInfo, loading, error, ocid };
 };

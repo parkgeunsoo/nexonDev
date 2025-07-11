@@ -1,13 +1,14 @@
-import CharacterSearch from "../component/CharacterSearch";
-import "../styles/style.scss";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SearchMain from "../component/SearchMain";
+import CharacterDetail from "../component/CharacterDetail";
 
-const Main = () => {
+export default function Main() {
   return (
-    <div>
-      <div className="text-center">캐릭터 조회</div>
-      <CharacterSearch />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SearchMain />} />
+        <Route path="/detail/:ocid" element={<CharacterDetail />} />
+      </Routes>
+    </BrowserRouter>
   );
-};
-
-export default Main;
+}
