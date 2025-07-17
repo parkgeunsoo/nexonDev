@@ -6,10 +6,10 @@ import Main from "./pages/Main";
 import theme from "./styles/theme";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  // <StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Main />
     </ThemeProvider>
-  </StrictMode>
+  // </StrictMode>
 );

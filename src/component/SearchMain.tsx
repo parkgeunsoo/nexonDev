@@ -48,7 +48,7 @@ const SearchMain = () => {
             spacing={2}
             alignItems="center"
             justifyContent="center">
-            <Grid item xs>
+            <Grid size={10}>
               <CustomInput
                 fullWidth
                 label="캐릭터 닉네임 입력"
@@ -56,7 +56,7 @@ const SearchMain = () => {
                 {...register("name")}
               />
             </Grid>
-            <Grid item>
+            <Grid size={2}>
               <CustomButton type="submit">검색</CustomButton>
             </Grid>
           </Grid>

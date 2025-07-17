@@ -52,3 +52,12 @@ export default tseslint.config({
   },
 })
 ```
+
+
+// GET data 받아서 사용 순서 설명
+// 1️⃣	API 응답 구조(JSON)를 확인한다
+// 2️⃣	해당 구조에 맞게 TypeScript interface를 정의한다
+// 3️⃣	useState로 타입을 지정하여 상태를 만든다
+// 4️⃣	useEffect에서 데이터를 가져와 상태에 저장한다
+// 5️⃣	map으로 데이터를 화면에 출력한다
+
