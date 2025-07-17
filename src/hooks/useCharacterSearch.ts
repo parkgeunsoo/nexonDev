@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { getOcid, getCharacterBasic } from "../api/nexon";
-import type { Character, CharacterBasic } from "../types/nexon";
+import type { Character, CharacterBasicResponse } from "../types/nexon";
 
 export const useCharacterSearch = (characterName: string) => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchInfo, setSearchInfo] = useState<CharacterBasic>();
+  const [searchInfo, setSearchInfo] = useState<CharacterBasicResponse>();
   const [ocid, setOcid] = useState<string | null>(null)
 
   useEffect(() => {

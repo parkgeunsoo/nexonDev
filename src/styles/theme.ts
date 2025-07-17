@@ -53,6 +53,7 @@ const theme = createTheme({
           background-color: #1C1C1F;
           color: #fff;
           font-size: 14px;
+          line-height: 1.5;
         }
       `,
     },

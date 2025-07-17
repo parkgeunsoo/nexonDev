@@ -2,11 +2,11 @@ import { nexonApi } from "./axiosInstance";
 import type {
   Character,
   CharacterListResponse,
-  CharacterBasic,
-  CharacterStat,
-  CharacterHyperStat,
-  CharacterPopularity,
-  CharacterPropencity,
+  CharacterBasicResponse,
+  CharacterStatResponse,
+  CharacterHyperStatResponse,
+  CharacterPopularityResponse,
+  CharacterPropensityResponse,
 } from "../types/nexon";
 
 // Ocid 조회
@@ -39,8 +39,8 @@ export const getCharacterList = async (
 export const getCharacterBasic = async (
   ocid: string,
   date?: string
-): Promise<CharacterBasic> => {
-  const res = await nexonApi.get<CharacterBasic>(
+): Promise<CharacterBasicResponse> => {
+  const res = await nexonApi.get<CharacterBasicResponse>(
     "https://open.api.nexon.com/maplestory/v1/character/basic",
     {
       params: {
@@ -56,8 +56,8 @@ export const getCharacterBasic = async (
 export const getPopularity = async (
   ocid: string,
   date?: string
-): Promise<CharacterPopularity> => {
-  const res = await nexonApi.get<CharacterPopularity>(
+): Promise<CharacterPopularityResponse> => {
+  const res = await nexonApi.get<CharacterPopularityResponse>(
     "https://open.api.nexon.com/maplestory/v1/character/popularity",
     {
       params: {
@@ -73,8 +73,8 @@ export const getPopularity = async (
 export const getCharacterStat = async (
   ocid: string,
   date?: string
-): Promise<CharacterStat> => {
-  const res = await nexonApi.get<CharacterStat>(
+): Promise<CharacterStatResponse> => {
+  const res = await nexonApi.get<CharacterStatResponse>(
     "https://open.api.nexon.com/maplestory/v1/character/stat",
     {
       params: {
@@ -90,8 +90,8 @@ export const getCharacterStat = async (
 export const getCharacterHyperStat = async (
   ocid: string,
   date?: string
-): Promise<CharacterHyperStat> => {
-  const res = await nexonApi.get<CharacterHyperStat>(
+): Promise<CharacterHyperStatResponse> => {
+  const res = await nexonApi.get<CharacterHyperStatResponse>(
     "https://open.api.nexon.com/maplestory/v1/character/hyper-stat",
     {
       params: {
@@ -107,8 +107,8 @@ export const getCharacterHyperStat = async (
 export const getCharacterAbility = async (
   ocid: string,
   date?: string
-): Promise<CharacterStat> => {
-  const res = await nexonApi.get<CharacterStat>(
+): Promise<CharacterStatResponse> => {
+  const res = await nexonApi.get<CharacterStatResponse>(
     "https://open.api.nexon.com/maplestory/v1/character/ability",
     {
       params: {
@@ -124,9 +124,26 @@ export const getCharacterAbility = async (
 export const getCharacterPropencity = async (
   ocid: string,
   date?: string
-): Promise<CharacterPropencity> => {
-  const res = await nexonApi.get<CharacterPropencity>(
+): Promise<CharacterPropensityResponse> => {
+  const res = await nexonApi.get<CharacterPropensityResponse>(
     "https://open.api.nexon.com/maplestory/v1/character/propensity",
+    {
+      params: {
+        ocid,
+        date, // 선택값: 지정 안 하면 오늘 날짜
+      },
+    }
+  );
+  return res.data;
+};
+
+// 장비 정보 조회
+export const getCharacterEquipment = async (
+  ocid: string,
+  date?: string
+): Promise<CharacterPropensityResponse> => {
+  const res = await nexonApi.get<CharacterPropensityResponse>(
+    "https://open.api.nexon.com/maplestory/v1/character/item-equipment",
     {
       params: {
         ocid,

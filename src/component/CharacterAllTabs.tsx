@@ -1,12 +1,13 @@
 import { Box, Tabs, Tab } from "@mui/material";
 import { useState } from "react";
-import type {
-  TabPanelProps,
-} from "../types/componentTypes";
+import CharacterBasicTabs from "./CharacterBasicTabs";
+import type { ProfileType } from "../types/componentTypes";
+
+import type { TabPanelProps } from "../types/componentTypes";
+import CharacterEquipmentTabs from "./CharacterEquipmentTabs";
 
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -26,14 +27,14 @@ function a11yProps(index: number) {
   };
 }
 
-const CharacterAllTabs = () => {
+const CharacterAllTabs = ({ profile }: { profile: ProfileType | null }) => {
   const [value, setValue] = useState(0);
-
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
   return (
-    <Box sx={{ width: "100%", px:2 }}>
+    <Box sx={{ width: "100%", px: 2 }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
@@ -42,19 +43,19 @@ const CharacterAllTabs = () => {
           sx={{
             "& .MuiTabs-list": {
               flexFlow: "wrap",
-              gap:1.5
+              gap: 1.5,
             },
             "& .MuiTabs-indicator": {
               bgcolor: "transparent",
             },
             "& .MuiButtonBase-root": {
-              minWidth: 'auto',
-              backgroundColor: '#000',
-              borderRadius: '32px',
-              padding: '6px 12px',
-              minHeight: 'auto',
-              height:' auto',
-              maxWidth: '100%',
+              minWidth: "auto",
+              backgroundColor: "#222",
+              borderRadius: "32px",
+              padding: "6px 12px",
+              minHeight: "auto",
+              height: " auto",
+              maxWidth: "100%",
             },
           }}>
           <Tab label="기본정보" />
@@ -66,9 +67,12 @@ const CharacterAllTabs = () => {
           <Tab label="길드" />
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0}></CustomTabPanel>
-      <CustomTabPanel value={value} index={1}></CustomTabPanel>
-      <CustomTabPanel value={value} index={2}></CustomTabPanel>
+      <CustomTabPanel value={value} index={0}>
+        <CharacterBasicTabs profile={profile} />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        <CharacterEquipmentTabs />
+      </CustomTabPanel>
     </Box>
   );
 };

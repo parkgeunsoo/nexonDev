@@ -15,7 +15,7 @@ const Profile = ({ profile }: { profile: InfoProps | null }) => {
     <Stack direction="row" alignItems="center" gap={2} p={2}>
       <Box
         component="img"
-        src={profile.character_image} // ✅ 실제 이미지 연결
+        // src={profile.character_image} // ✅ 실제 이미지 연결
         alt={profile.character_image}
         sx={{
           borderRadius: "50%",

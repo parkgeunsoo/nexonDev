@@ -1,18 +1,13 @@
 import { Box, Tabs, Tab } from "@mui/material";
 import { useState } from "react";
-import CharacterBasicInfo from "./CharacterBasicInfo"; // ← 실제 탭 내용
-import type {
-  TabPanelProps,
-  CharacterBasicTabsProps,
-} from "../types/componentTypes";
+import CharacterBasicInfo from "./CharacterBasicInfo";
 import CharacterBasicPropensity from "./CharacterBasicPropensity";
+import type { ProfileType } from "../types/componentTypes";
 
-
-
+import type { TabPanelProps } from "../types/componentTypes";
 
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -32,16 +27,8 @@ function a11yProps(index: number) {
   };
 }
 
-
-
-const CharacterBasicTabs = ({
-  profile,
-  popularity,
-  statList,
-  hyper,
-}: CharacterBasicTabsProps) => {
+const CharacterBasicTabs = ({ profile }: { profile: ProfileType | null }) => {
   const [value, setValue] = useState(0);
-
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -53,30 +40,19 @@ const CharacterBasicTabs = ({
           value={value}
           onChange={handleChange}
           aria-label="basic tabs"
-          sx={{
-            "& .MuiTabs-indicator": {
-              bgcolor: "transparent",
-            },
-          }}>
+          sx={{ "& .MuiTabs-indicator": { bgcolor: "transparent" } }}>
           <Tab label="기본/스탯" sx={{ width: "33.3%" }} />
           <Tab label="성향" sx={{ width: "33.3%" }} />
           <Tab label="기타" sx={{ width: "33.3%" }} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <CharacterBasicInfo
-          profile={profile}
-          popularity={popularity}
-          statList={statList}
-          hyper={hyper}
-        />
+        <CharacterBasicInfo profile={profile} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <CharacterBasicPropensity />
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
-        {/* 기타 내용 */}
-      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}></CustomTabPanel>
     </Box>
   );
 };
