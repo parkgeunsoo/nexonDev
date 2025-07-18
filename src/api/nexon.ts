@@ -7,6 +7,7 @@ import type {
   CharacterHyperStatResponse,
   CharacterPopularityResponse,
   CharacterPropensityResponse,
+  CharacterEquipmentResponse,
 } from "../types/nexon";
 
 // Ocid 조회
@@ -141,8 +142,8 @@ export const getCharacterPropencity = async (
 export const getCharacterEquipment = async (
   ocid: string,
   date?: string
-): Promise<CharacterPropensityResponse> => {
-  const res = await nexonApi.get<CharacterPropensityResponse>(
+): Promise<CharacterEquipmentResponse> => {
+  const res = await nexonApi.get<CharacterEquipmentResponse>(
     "https://open.api.nexon.com/maplestory/v1/character/item-equipment",
     {
       params: {

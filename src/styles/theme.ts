@@ -64,6 +64,20 @@ const theme = createTheme({
         },
       },
     },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+          margin: 0,
+          display: "block",
+          width: "auto",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          textAlign: "left",
+          // 추가로 원하는 스타일 초기화
+        },
+      },
+    },
   },
 });
 

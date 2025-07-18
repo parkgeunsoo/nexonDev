@@ -3,10 +3,17 @@ import { Box, Tabs, Tab } from "@mui/material";
 import type { TabPanelProps } from "../types/componentTypes";
 import { useParams } from 'react-router-dom';
 
-import type  { CharacterEquipmentResponse } from "../types/nexon";
-import { getCharacterEquipment } from '../api/nexon';
+import type { EquipmentItem, CharacterEquipmentResponse } from "../types/nexon";
+import { getCharacterEquipment} from "../api/nexon";
 import EquimentFreeset1 from './EquimentFreeset1';
+import EquimentFreeset2 from "./EquimentFreeset2";
+import EquimentFreeset3 from "./EquimentFreeset3";
 
+interface EquimentType {
+  item_equipment_preset_1: EquipmentItem[];
+  item_equipment_preset_2: EquipmentItem[];
+  item_equipment_preset_3: EquipmentItem[];
+}
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
   return (
@@ -36,12 +43,14 @@ const CharacterEquipmentTabs = () => {
   };
   const { ocid } = useParams<{ ocid: string }>();
   
-  const [freeset1, setFreeset1] = useState<CharacterEquipmentResponse[]>([]);
-  const [freeset2, setFreeset2] = useState<CharacterEquipmentResponse[]>([]);
-  const [freeset3, setFreeset3] = useState<CharacterEquipmentResponse[]>([]);
+  const [freeset1, setFreeset1] = useState<EquipmentItem[]>([]);
+  const [freeset2, setFreeset2] = useState<EquipmentItem[]>([]);
+  const [freeset3, setFreeset3] = useState<EquipmentItem[]>([]);
 
 
   useEffect(() => {
+    if (!ocid) return;
+
     const fetchEquipmentLise = async () => {
       try {
         const data = await getCharacterEquipment(ocid);
@@ -74,8 +83,12 @@ const CharacterEquipmentTabs = () => {
       <CustomTabPanel value={value} index={0}>
         <EquimentFreeset1 freeset={freeset1} />
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}></CustomTabPanel>
-      <CustomTabPanel value={value} index={2}></CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        <EquimentFreeset2 freeset={freeset2} />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        <EquimentFreeset3 freeset={freeset3} />
+      </CustomTabPanel>
       <CustomTabPanel value={value} index={3}></CustomTabPanel>
     </Box>
   );

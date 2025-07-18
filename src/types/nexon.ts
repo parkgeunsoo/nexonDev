@@ -55,6 +55,7 @@ export interface CharacterPopularityResponse {
 
 // ------------------------------------------
 //  하이퍼 스탯
+
 // 개별 스탯 항목
 export interface HyperStatItem {
   stat_type: string;
@@ -157,7 +158,7 @@ export interface EquipmentItem {
   cuttable_count?: string; // 가위 사용 가능 횟수
   golden_hammer_flag?: string; // 황금 망치 적용 여부
   scroll_resilience_count?: string; // 복구 가능 횟수
-  scroll_upgradable_count?: string; // 주문서 잔여 횟수
+  scroll_upgradeable_count?: string; // 주문서 잔여 횟수
 
   soul_name?: string; // 소울 이름
   soul_option?: string; // 소울 옵션
